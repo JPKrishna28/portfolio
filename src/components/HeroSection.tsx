@@ -5,7 +5,7 @@ const HeroSection = () => {
   const [textIndex, setTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(120);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<number | null>(null); // ✅ corrected type for browser
 
   const texts = ['ML Engineer', 'Developer', 'Creator'];
 
@@ -39,7 +39,7 @@ const HeroSection = () => {
       }
     };
 
-    timeoutRef.current = setTimeout(handleTyping, typingSpeed);
+    timeoutRef.current = window.setTimeout(handleTyping, typingSpeed); // ✅ use `window.setTimeout` for clarity
     return () => timeoutRef.current && clearTimeout(timeoutRef.current);
   }, [typedText, isDeleting, textIndex, typingSpeed]);
 
