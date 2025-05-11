@@ -42,7 +42,7 @@ const AboutSection = () => {
             <div className="relative z-10 bg-background border border-border shadow-xl rounded-lg p-1 mx-auto max-w-md">
               <div className="aspect-[4/5] overflow-hidden rounded-lg bg-secondary/20">
                 <img
-                  src="/jaswanth-profile.jpg"
+                  src="myphoto.jpg"
                   alt="Jaswanth Krishna"
                   className="w-full h-full object-cover"
                 />

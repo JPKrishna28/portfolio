@@ -24,7 +24,7 @@ const ProjectsSection = () => {
       image: 'ecommerce.png',
       tags: ['React', 'Node.js', 'MongoDB', 'Express'],
       demoLink: 'https://demo.com/project1',
-      codeLink: 'https://github.com/username/project1',
+      codeLink: 'https://github.com/Krizzna69/Akrizz',
     },
     {
       id: 2,
@@ -33,7 +33,7 @@ const ProjectsSection = () => {
       image: 'todolist.png',
       tags: ['React', 'Firebase', 'Tailwind CSS'],
       demoLink: 'pjhabit.netlify.app',
-      codeLink: 'https://github.com/username/project2',
+      codeLink: 'https://github.com/Krizzna69/habit_track',
     },
     {
       id: 3,
@@ -42,7 +42,7 @@ const ProjectsSection = () => {
       image: 'weatherapp.png',
       tags: ['JavaScript', 'API', 'CSS'],
       demoLink: 'https://demo.com/project3',
-      codeLink: 'https://github.com/username/project3',
+      codeLink: 'https://github.com/Krizzna69/weatherapp',
     },
     {
       id: 4,
@@ -50,7 +50,7 @@ const ProjectsSection = () => {
       description: 'A personal portfolio website showcasing skills, projects, and experience.',
       image: 'portfolio.png',
       tags: ['React', 'Tailwind CSS', 'TypeScript'],
-      demoLink: 'https://demo.com/project4',
+      demoLink: 'https://pjportfoliogen.netlify.app/',
       codeLink: 'https://github.com/username/project4',
     },
     {
@@ -60,7 +60,7 @@ const ProjectsSection = () => {
       image: 'recipe.png',
       tags: ['React', 'API', 'CSS'],
       demoLink: 'https://demo.com/project5',
-      codeLink: 'https://github.com/username/project5',
+      codeLink: 'https://github.com/Krizzna69/recipe_generator-genai-',
     },
   
     {
@@ -70,7 +70,7 @@ const ProjectsSection = () => {
       image: 'instaspam.png',
       tags: ['ML', 'NLP', 'Python'],
       demoLink: 'https://demo.com/instaspam',
-      codeLink: 'https://github.com/username/insta-spam-detection',
+      codeLink: 'https://github.com/Krizzna69/insta_spam_detection',
     },
     {
       id: 8,
@@ -78,8 +78,8 @@ const ProjectsSection = () => {
       description: 'A location-aware system for tracking and managing attendance using GPS data.',
       image: 'geocheckin.png',
       tags: ['React', 'MongoDB', 'Node.js', 'Geolocation'],
-      demoLink: 'https://demo.com/attendance',
-      codeLink: 'https://github.com/username/geo-attendance',
+      demoLink: 'https://geocheckin.netlify.app/',
+      codeLink: 'https://github.com/Krizzna69/srmgeolocation',
     },
     {
       id: 9,
@@ -88,7 +88,7 @@ const ProjectsSection = () => {
       image: 'DWLR.png',
       tags: ['Python', 'IoT', 'ML'],
       demoLink: 'https://demo.com/waterlevel',
-      codeLink: 'https://github.com/username/water-monitor',
+      codeLink: 'https://github.com/Krizzzna69/dwlr',
     },
     {
       id: 10,
@@ -96,8 +96,8 @@ const ProjectsSection = () => {
       description: 'A translation system using Gemini 2, achieving 94% accuracy for English to Telugu language translation.',
       image: 'gemma2.png',
       tags: ['AI', 'Gemini 2', 'Translation'],
-      demoLink: 'https://demo.com/translator',
-      codeLink: 'https://github.com/username/english-telugu-translator',
+      demoLink: 'https://www.kaggle.com/code/krizzna69/english-to-telugu-with-lora-gemma-2',
+      codeLink: 'https://www.kaggle.com/code/krizzna69/english-to-telugu-with-lora-gemma-2',
     },
     {
       id: 11,
@@ -114,8 +114,8 @@ const ProjectsSection = () => {
       description: 'Generates blog outlines, social media posts, and ad copy using Gemini and ADK.',
       image: 'content.png',
       tags: ['AI', 'Gemini', 'ADK'],
-      demoLink: 'https://demo.com/contentagent',
-      codeLink: 'https://github.com/username/content-gen-agent',
+      demoLink: 'https://youtube-content-frontend.vercel.app/',
+      codeLink: 'https://github.com/Krizzna69/youtube_content_frontend',
     },
     {
       id: 14,
@@ -124,7 +124,7 @@ const ProjectsSection = () => {
       image: 'tictactoe.png',
       tags: ['WebSocket', 'Game', 'JavaScript'],
       demoLink: 'pjtictactoe.netlify.app',
-      codeLink: 'https://github.com/username/tic-tac-toe-ws',
+      codeLink: 'https://github.com/Krizzna69/tic_tac_toe_frontend',
     },
     {
       id: 15,
@@ -133,7 +133,7 @@ const ProjectsSection = () => {
       image: 'chatapp.png',
       tags: ['WebSocket', 'Chat', 'Node.js'],
       demoLink: 'https://pjwebsocket.netlify.app/',
-      codeLink: 'https://github.com/username/chat-websocket',
+      codeLink: 'https://github.com/Krizzna69/chat_websocket',
     },
     {
       id: 16,
@@ -142,7 +142,7 @@ const ProjectsSection = () => {
       image: 'aiimage.png',
       tags: ['BLIP', 'GPT-2', 'AI'],
       demoLink: 'https://huggingface.co/spaces/Jaswanth0217/AI-Image-Captioning',
-      codeLink: 'https://github.com/username/ai-image-captioning',
+      codeLink: 'https://github.com/Krizzna69/ai-image-captioning',
     },
     {
       id: 17,
@@ -151,7 +151,7 @@ const ProjectsSection = () => {
       image: 'rag.png',
       tags: ['RAG', 'Phi-2', 'AI'],
       demoLink: 'https://huggingface.co/spaces/jk12p/RAG',
-      codeLink: 'https://github.com/username/rag-model-phi2',
+      codeLink: 'https://github.com/Krizzna69/2B_RAG',
     },
     {
       id: 18,
@@ -160,7 +160,7 @@ const ProjectsSection = () => {
       image: 'form-validator.png',
       tags: ['Python', 'Validation', 'pip'],
       demoLink: 'https://pypi.org/project/form-validator',
-      codeLink: 'https://github.com/username/form-validator',
+      codeLink: 'https://github.com/Krizzna69/form_validator',
     },
     {
       id: 19,
@@ -168,8 +168,8 @@ const ProjectsSection = () => {
       description: 'An AI-based application to classify the severity of injuries using image processing.',
       image: 'injuryshield.png',
       tags: ['AI', 'Computer Vision', 'Healthcare'],
-      demoLink: 'https://demo.com/injuryshield',
-      codeLink: 'https://github.com/username/injuryshield',
+      demoLink: 'https://soft-marigold-2f9026.netlify.app/',
+      codeLink: 'https://github.com/Krizzna69/frontend_injuryshield',
     },
     {
       id: 20,
@@ -177,8 +177,8 @@ const ProjectsSection = () => {
       description: 'A 3D web-based art gallery experience for showcasing digital artworks.',
       image: 'artgallery.png',
       tags: ['Three.js', 'React', '3D'],
-      demoLink: 'https://demo.com/virtualgallery',
-      codeLink: 'https://github.com/username/virtual-art-gallery',
+      demoLink: 'https://virtual-art-gallery-wsth.onrender.com/second',
+      codeLink: 'https://github.com/Krizzna69/virtual_art_gallery',
     },
   ];
 
