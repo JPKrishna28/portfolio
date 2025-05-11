@@ -5,17 +5,13 @@ const HeroSection = () => {
   const [textIndex, setTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(120);
-  const texts = ['Designer', 'Developer', 'Creator'];
-
-  // Use a ref for storing timeoutId to avoid cleanup issues
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const texts = ['ML Engineer', 'Developer', 'Creator'];
+
   useEffect(() => {
-    // Clear any existing timeout when component unmounts or when the effect reruns
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
 
@@ -23,54 +19,42 @@ const HeroSection = () => {
     const currentWord = texts[textIndex];
 
     const handleTyping = () => {
-      setTypedText((current) => {
-        if (isDeleting) {
-          // Deleting text
-          const newText = current.substring(0, current.length - 1);
-          if (newText === '') {
-            setIsDeleting(false);
-            setTextIndex((prev) => (prev + 1) % texts.length);
-            setTypingSpeed(700); // Pause before next word
-            return newText;
-          }
-          setTypingSpeed(50); // Faster when deleting
-          return newText;
-        } else {
-          // Typing text
-          const newText = currentWord.substring(0, current.length + 1);
+      const current = typedText;
 
-          if (newText === currentWord) {
-            setTypingSpeed(2000); // Pause at the end
-            setIsDeleting(true);
-            return newText;
-          }
+      if (isDeleting) {
+        const newText = current.slice(0, -1);
+        setTypedText(newText);
+        setTypingSpeed(newText ? 50 : 700);
 
-          setTypingSpeed(120); // Normal typing speed
-          return newText;
+        if (!newText) {
+          setIsDeleting(false);
+          setTextIndex((prev) => (prev + 1) % texts.length);
         }
-      });
+      } else {
+        const newText = currentWord.slice(0, current.length + 1);
+        setTypedText(newText);
+        setTypingSpeed(newText === currentWord ? 2000 : 120);
+
+        if (newText === currentWord) setIsDeleting(true);
+      }
     };
 
     timeoutRef.current = setTimeout(handleTyping, typingSpeed);
-
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [typedText, isDeleting, textIndex, typingSpeed, texts]);
+    return () => timeoutRef.current && clearTimeout(timeoutRef.current);
+  }, [typedText, isDeleting, textIndex, typingSpeed]);
 
   return (
     <section id="home" className="pt-32 pb-20 min-h-screen flex flex-col justify-center">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            Hello, I'm <span className="text-primary">John Doe</span>
+            Hello, I'm <span className="text-primary">Perla Jaswanth Krishna</span>
           </h1>
 
           <div className="h-10 mb-8">
             <h2 className="text-2xl md:text-3xl flex items-center">
-              I'm a <span className="text-primary ml-2 relative min-w-20 inline-block">
+              I'm a{' '}
+              <span className="text-primary ml-2 relative min-w-20 inline-block">
                 {typedText}
                 <span className="absolute right-[-4px] top-0 h-full w-[2px] bg-primary animate-pulse" />
               </span>
@@ -98,11 +82,7 @@ const HeroSection = () => {
           </div>
 
           <div className="mt-16 animate-bounce">
-            <a
-              href="#about"
-              aria-label="Scroll down"
-              className="inline-block"
-            >
+            <a href="#about" aria-label="Scroll down" className="inline-block">
               <svg
                 className="w-10 h-10"
                 fill="none"

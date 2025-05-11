@@ -1,36 +1,26 @@
 import { useState, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 
+const navLinks = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Contact', href: '#contact' },
+];
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-  ];
 
   return (
     <header
@@ -41,30 +31,28 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-        <a href="#home" className="text-2xl font-bold">
-          Portfolio
-        </a>
+        <a href="#home" className="text-2xl font-bold">Portfolio</a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
-          {navLinks.map((link) => (
+          {navLinks.map(({ name, href }) => (
             <a
-              key={link.name}
-              href={link.href}
+              key={name}
+              href={href}
               className="relative font-medium hover:text-primary transition-colors after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
             >
-              {link.name}
+              {name}
             </a>
           ))}
           <ThemeToggle />
         </nav>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu Button */}
         <div className="flex items-center md:hidden space-x-2">
           <ThemeToggle />
           <button
             className="text-foreground focus:outline-none"
-            onClick={toggleMenu}
+            onClick={() => setIsMenuOpen((prev) => !prev)}
             aria-label="Toggle menu"
           >
             <svg
@@ -94,21 +82,21 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation */}
       <div
         className={`md:hidden absolute w-full bg-background/95 backdrop-blur-md shadow-md transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'max-h-96 py-4' : 'max-h-0 py-0 overflow-hidden'
         }`}
       >
         <div className="container mx-auto px-4 flex flex-col space-y-4">
-          {navLinks.map((link) => (
+          {navLinks.map(({ name, href }) => (
             <a
-              key={link.name}
-              href={link.href}
+              key={name}
+              href={href}
               className="py-2 px-4 hover:bg-secondary/50 rounded-md transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              {link.name}
+              {name}
             </a>
           ))}
         </div>
