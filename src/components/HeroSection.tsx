@@ -5,13 +5,16 @@ const HeroSection = () => {
   const [textIndex, setTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(120);
-  const timeoutRef = useRef<number | null>(null); // ✅ corrected type for browser
+  const timeoutRef = useRef<number | null>(null);  // Corrected type
 
   const texts = ['ML Engineer', 'Developer', 'Creator'];
 
   useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    // Cleanup function to clear timeout
+    return (): void => {
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current);
+      }
     };
   }, []);
 
@@ -39,8 +42,13 @@ const HeroSection = () => {
       }
     };
 
-    timeoutRef.current = window.setTimeout(handleTyping, typingSpeed); // ✅ use `window.setTimeout` for clarity
-    return () => timeoutRef.current && clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(handleTyping, typingSpeed);
+
+    return (): void => {
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, [typedText, isDeleting, textIndex, typingSpeed]);
 
   return (
