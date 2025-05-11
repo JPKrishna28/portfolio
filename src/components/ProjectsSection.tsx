@@ -10,6 +10,8 @@ interface Project {
   codeLink: string;
 }
 
+
+
 const ProjectsSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
@@ -19,7 +21,7 @@ const ProjectsSection = () => {
       id: 1,
       title: 'E-Commerce Website',
       description: 'A fully functional e-commerce platform with product listings, cart functionality, and checkout process.',
-      image: '/placeholder.jpg', // Replace with actual image
+      image: 'ecommerce.png',
       tags: ['React', 'Node.js', 'MongoDB', 'Express'],
       demoLink: 'https://demo.com/project1',
       codeLink: 'https://github.com/username/project1',
@@ -28,16 +30,16 @@ const ProjectsSection = () => {
       id: 2,
       title: 'Task Management App',
       description: 'A task management application with drag-and-drop functionality, user authentication, and real-time updates.',
-      image: '/placeholder.jpg', // Replace with actual image
+      image: 'todolist.png',
       tags: ['React', 'Firebase', 'Tailwind CSS'],
-      demoLink: 'https://demo.com/project2',
+      demoLink: 'pjhabit.netlify.app',
       codeLink: 'https://github.com/username/project2',
     },
     {
       id: 3,
       title: 'Weather Dashboard',
       description: 'A weather dashboard that displays current and forecasted weather data for multiple locations.',
-      image: '/placeholder.jpg', // Replace with actual image
+      image: 'weatherapp.png',
       tags: ['JavaScript', 'API', 'CSS'],
       demoLink: 'https://demo.com/project3',
       codeLink: 'https://github.com/username/project3',
@@ -46,7 +48,7 @@ const ProjectsSection = () => {
       id: 4,
       title: 'Portfolio Website',
       description: 'A personal portfolio website showcasing skills, projects, and experience.',
-      image: '/placeholder.jpg', // Replace with actual image
+      image: 'portfolio.png',
       tags: ['React', 'Tailwind CSS', 'TypeScript'],
       demoLink: 'https://demo.com/project4',
       codeLink: 'https://github.com/username/project4',
@@ -55,34 +57,140 @@ const ProjectsSection = () => {
       id: 5,
       title: 'Recipe Finder App',
       description: 'An application that allows users to search for recipes based on ingredients or dish names.',
-      image: '/placeholder.jpg', // Replace with actual image
+      image: 'recipe.png',
       tags: ['React', 'API', 'CSS'],
       demoLink: 'https://demo.com/project5',
       codeLink: 'https://github.com/username/project5',
     },
+  
     {
-      id: 6,
-      title: 'Blog Platform',
-      description: 'A full-stack blog platform with user authentication, CRUD operations, and comment functionality.',
-      image: '/placeholder.jpg', // Replace with actual image
-      tags: ['Node.js', 'Express', 'MongoDB', 'React'],
-      demoLink: 'https://demo.com/project6',
-      codeLink: 'https://github.com/username/project6',
+      id: 7,
+      title: 'Insta Spam Detection',
+      description: 'A machine learning model to detect spam comments on Instagram, improving user safety and experience.',
+      image: 'instaspam.png',
+      tags: ['ML', 'NLP', 'Python'],
+      demoLink: 'https://demo.com/instaspam',
+      codeLink: 'https://github.com/username/insta-spam-detection',
+    },
+    {
+      id: 8,
+      title: 'Geolocation-Based Attendance System',
+      description: 'A location-aware system for tracking and managing attendance using GPS data.',
+      image: 'geocheckin.png',
+      tags: ['React', 'MongoDB', 'Node.js', 'Geolocation'],
+      demoLink: 'https://demo.com/attendance',
+      codeLink: 'https://github.com/username/geo-attendance',
+    },
+    {
+      id: 9,
+      title: 'Water Level Monitoring System',
+      description: 'Real-time water level monitoring using piezometer data, with predictive analysis and Z-score anomaly detection.',
+      image: 'DWLR.png',
+      tags: ['Python', 'IoT', 'ML'],
+      demoLink: 'https://demo.com/waterlevel',
+      codeLink: 'https://github.com/username/water-monitor',
+    },
+    {
+      id: 10,
+      title: 'English-Telugu Translator',
+      description: 'A translation system using Gemini 2, achieving 94% accuracy for English to Telugu language translation.',
+      image: 'gemma2.png',
+      tags: ['AI', 'Gemini 2', 'Translation'],
+      demoLink: 'https://demo.com/translator',
+      codeLink: 'https://github.com/username/english-telugu-translator',
+    },
+    {
+      id: 11,
+      title: 'Video to Reel Summarizer',
+      description: 'Automatically converts long videos into 30-second reels using FFmpeg, Whisper, and NLP.',
+      image: 'videotoreels.png',
+      tags: ['Python', 'FFmpeg', 'Whisper', 'NLP'],
+      demoLink: 'https://demo.com/reel',
+      codeLink: 'https://github.com/username/video-reel-summarizer',
+    },
+    {
+      id: 13,
+      title: 'Content Generation Agent',
+      description: 'Generates blog outlines, social media posts, and ad copy using Gemini and ADK.',
+      image: 'content.png',
+      tags: ['AI', 'Gemini', 'ADK'],
+      demoLink: 'https://demo.com/contentagent',
+      codeLink: 'https://github.com/username/content-gen-agent',
+    },
+    {
+      id: 14,
+      title: 'Tic Tac Toe Multiplayer',
+      description: 'Real-time multiplayer Tic Tac Toe game using WebSocket for communication.',
+      image: 'tictactoe.png',
+      tags: ['WebSocket', 'Game', 'JavaScript'],
+      demoLink: 'pjtictactoe.netlify.app',
+      codeLink: 'https://github.com/username/tic-tac-toe-ws',
+    },
+    {
+      id: 15,
+      title: 'Chat Application using WebSocket',
+      description: 'Real-time chat app supporting multiple users with WebSocket technology.',
+      image: 'chatapp.png',
+      tags: ['WebSocket', 'Chat', 'Node.js'],
+      demoLink: 'https://pjwebsocket.netlify.app/',
+      codeLink: 'https://github.com/username/chat-websocket',
+    },
+    {
+      id: 16,
+      title: 'AI Image Captioning',
+      description: 'An AI system using BLIP and GPT-2 to generate captions for images.',
+      image: 'aiimage.png',
+      tags: ['BLIP', 'GPT-2', 'AI'],
+      demoLink: 'https://huggingface.co/spaces/Jaswanth0217/AI-Image-Captioning',
+      codeLink: 'https://github.com/username/ai-image-captioning',
+    },
+    {
+      id: 17,
+      title: '2B RAG Model using Microsoft Phi-2',
+      description: 'A RAG model leveraging Microsoft Phi-2 for knowledge-augmented responses.',
+      image: 'rag.png',
+      tags: ['RAG', 'Phi-2', 'AI'],
+      demoLink: 'https://huggingface.co/spaces/jk12p/RAG',
+      codeLink: 'https://github.com/username/rag-model-phi2',
+    },
+    {
+      id: 18,
+      title: 'Form Validator (pip module)',
+      description: 'A custom Python module to validate form fields like email, phone, and age.',
+      image: 'form-validator.png',
+      tags: ['Python', 'Validation', 'pip'],
+      demoLink: 'https://pypi.org/project/form-validator',
+      codeLink: 'https://github.com/username/form-validator',
+    },
+    {
+      id: 19,
+      title: 'InjuryShield',
+      description: 'An AI-based application to classify the severity of injuries using image processing.',
+      image: 'injuryshield.png',
+      tags: ['AI', 'Computer Vision', 'Healthcare'],
+      demoLink: 'https://demo.com/injuryshield',
+      codeLink: 'https://github.com/username/injuryshield',
+    },
+    {
+      id: 20,
+      title: 'Virtual Art Gallery',
+      description: 'A 3D web-based art gallery experience for showcasing digital artworks.',
+      image: 'artgallery.png',
+      tags: ['Three.js', 'React', '3D'],
+      demoLink: 'https://demo.com/virtualgallery',
+      codeLink: 'https://github.com/username/virtual-art-gallery',
     },
   ];
 
-  // Get all unique tags from projects
   const allTags = Array.from(new Set(projects.flatMap((project) => project.tags)));
 
-  // Filter projects based on selected category
   useEffect(() => {
     if (selectedCategory === 'all') {
       setFilteredProjects(projects);
     } else {
-      const filtered = projects.filter((project) =>
-        project.tags.includes(selectedCategory)
+      setFilteredProjects(
+        projects.filter((project) => project.tags.includes(selectedCategory))
       );
-      setFilteredProjects(filtered);
     }
   }, [selectedCategory]);
 
@@ -93,12 +201,11 @@ const ProjectsSection = () => {
           <h2 className="text-3xl font-bold mb-2">My Projects</h2>
           <div className="w-20 h-1 bg-primary rounded"></div>
           <p className="mt-6 text-center max-w-2xl text-muted-foreground">
-            Here are some of my recent projects. Each project is a unique piece of development, from
-            planning and design all the way to solving real-life problems with code.
+            Here are some of my recent projects. Each project is a unique piece of development,
+            from planning and design all the way to solving real-life problems with code.
           </p>
         </div>
 
-        {/* Projects Filter */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           <button
             onClick={() => setSelectedCategory('all')}
@@ -125,7 +232,6 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <div
@@ -134,16 +240,14 @@ const ProjectsSection = () => {
             >
               <div className="aspect-video bg-secondary/20 relative">
                 <img
-                  src="/placeholder.svg"
+                  src={project.image}
                   alt={`${project.title} screenshot`}
                   className="w-full h-full object-cover"
                 />
               </div>
-
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                 <p className="text-muted-foreground mb-4">{project.description}</p>
-
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag) => (
                     <span
@@ -154,7 +258,6 @@ const ProjectsSection = () => {
                     </span>
                   ))}
                 </div>
-
                 <div className="flex gap-4">
                   <a
                     href={project.demoLink}

@@ -169,9 +169,9 @@ const ContactSection = () => {
             <div className="bg-background border border-border rounded-lg p-6 shadow-sm">
               <h3 className="text-2xl font-semibold mb-6 text-foreground">Contact Information</h3>
               <div className="space-y-4">
-                <ContactInfo label="Email" value="hello@example.com" href="mailto:hello@example.com" />
-                <ContactInfo label="Phone" value="+1 (234) 567-890" href="tel:+1234567890" />
-                <ContactInfo label="Location" value="123 Main St, City, Country" href="#" />
+                <ContactInfo label="Email" value="perlajaswanthkrishna@gmail.com" href="mailto:perlajaswanthkrishna@gmail.com" />
+                <ContactInfo label="Phone" value="+91 80961 91416" href="tel:+91 8096191416" />
+                <ContactInfo label="Location" value="Nuzvid, Andhra Pradesh, India" href="#" />
               </div>
             </div>
           </div>
