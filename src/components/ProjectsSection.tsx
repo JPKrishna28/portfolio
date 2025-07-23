@@ -41,7 +41,7 @@ const ProjectsSection = () => {
       description: 'A weather dashboard that displays current and forecasted weather data for multiple locations.',
       image: 'weatherapp.png',
       tags: ['JavaScript', 'API', 'CSS'],
-      demoLink: 'https://demo.com/project3',
+      demoLink: 'https://github.com/Krizzna69/weatherapp',
       codeLink: 'https://github.com/Krizzna69/weatherapp',
     },
     {
@@ -59,7 +59,7 @@ const ProjectsSection = () => {
       description: 'An application that allows users to search for recipes based on ingredients or dish names.',
       image: 'recipe.png',
       tags: ['React', 'API', 'CSS'],
-      demoLink: 'https://demo.com/project5',
+      demoLink: 'https://github.com/Krizzna69/recipe_generator-genai-',
       codeLink: 'https://github.com/Krizzna69/recipe_generator-genai-',
     },
   
@@ -87,7 +87,7 @@ const ProjectsSection = () => {
       description: 'Real-time water level monitoring using piezometer data, with predictive analysis and Z-score anomaly detection.',
       image: 'DWLR.png',
       tags: ['Python', 'IoT', 'ML'],
-      demoLink: 'https://demo.com/waterlevel',
+      demoLink: 'https://github.com/JPKrishna28/dwlr.git',
       codeLink: 'https://github.com/Krizzzna69/dwlr',
     },
     {
