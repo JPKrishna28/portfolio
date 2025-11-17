@@ -14,7 +14,7 @@ const AboutSection = () => {
               I'm P. Jaswanth Krishna, a passionate AI & ML student and full-stack developer with experience in building real-world projects using Python, React, and ML tools. As the Vice President of the Innovista Club at NRI Institute of Technology, I've conducted impactful workshops and guided many students in technology.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              I'm also a recognized contributor to open-source NLP models (like Gemma2 2 for Telugu) and a winner of multiple accolades including "Best Project Award",  and the TechTrek Hackathon. I enjoy building AI wrappers, portfolio sites, and futuristic applications.
+              I'm also a recognized contributor to open-source NLP models (like Gemma2 for Telugu) and a winner of multiple accolades including "Best Project Award",  and the TechTrek Hackathon. I enjoy building AI wrappers, portfolio sites, and futuristic applications.
             </p>
 
             {/* Download Resume Button */}
@@ -113,7 +113,7 @@ const AboutSection = () => {
               </svg>
             </div>
             <h3 className="text-xl font-semibold mb-2">Achievements</h3>
-            <p className="text-muted-foreground">Postman Student Leader, Hackathon Winner, Best CR, Gemma2 2 Contributor</p>
+            <p className="text-muted-foreground">Postman Student Leader, Hackathon Winner, Best CR, Gemma2 Contributor</p>
           </div>
         </div>
       </div>
