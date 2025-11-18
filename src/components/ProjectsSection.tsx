@@ -14,6 +14,8 @@ interface Project {
 const ProjectsSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
+  const [showAll, setShowAll] = useState(false);
+  const INITIAL_DISPLAY_COUNT = 6;
 
   const projects: Project[] = [
     {
@@ -191,6 +193,8 @@ const ProjectsSection = () => {
         projects.filter((project) => project.tags.includes(selectedCategory))
       );
     }
+    // Reset showAll when category changes
+    setShowAll(false);
   }, [selectedCategory]);
 
   return (
@@ -258,7 +262,7 @@ const ProjectsSection = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence>
-            {filteredProjects.map((project) => (
+            {(showAll ? filteredProjects : filteredProjects.slice(0, INITIAL_DISPLAY_COUNT)).map((project) => (
               <motion.div
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -314,6 +318,24 @@ const ProjectsSection = () => {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {/* View More Button */}
+        {filteredProjects.length > INITIAL_DISPLAY_COUNT && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex justify-center mt-12"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(124, 58, 237, 0.5)" }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowAll(!showAll)}
+              className="px-8 py-3 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-lg transition-all shadow-lg"
+            >
+              {showAll ? 'Show Less' : `View More (${filteredProjects.length - INITIAL_DISPLAY_COUNT} more)`}
+            </motion.button>
+          </motion.div>
+        )}
 
         {filteredProjects.length === 0 && (
           <motion.div
