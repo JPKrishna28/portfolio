@@ -1,16 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   const [typedText, setTypedText] = useState('');
   const [textIndex, setTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(120);
-  const timeoutRef = useRef<number | null>(null);  // Corrected type
+  const timeoutRef = useRef<number | null>(null);
 
   const texts = ['ML Engineer', 'Developer', 'Creator'];
 
   useEffect(() => {
-    // Cleanup function to clear timeout
     return (): void => {
       if (timeoutRef.current !== null) {
         clearTimeout(timeoutRef.current);
@@ -52,63 +52,96 @@ const HeroSection = () => {
   }, [typedText, isDeleting, textIndex, typingSpeed]);
 
   return (
-    <section id="home" className="pt-32 pb-20 min-h-screen flex flex-col justify-center">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            Hello, I'm <span className="text-primary">Perla Jaswanth Krishna</span>
-          </h1>
+    <section id="home" className="pt-32 pb-20 min-h-screen flex flex-col justify-center relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] -z-10"></div>
 
-          <div className="h-10 mb-8">
-            <h2 className="text-2xl md:text-3xl flex items-center">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="flex flex-col items-center text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6 relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent blur-xl opacity-50 rounded-full"></div>
+            <img
+              src="/myphoto.png"
+              alt="Profile"
+              className="w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-white/10 relative z-10 object-cover"
+            />
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
+          >
+            Hello, I'm <br className="md:hidden" />
+            <span className="text-primary">
+              Perla Jaswanth Krishna
+            </span>
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="h-12 mb-8 flex items-center justify-center"
+          >
+            <h2 className="text-2xl md:text-3xl font-light text-muted-foreground">
               I'm a{' '}
-              <span className="text-primary ml-2 relative min-w-20 inline-block">
+              <span className="text-foreground font-medium ml-2 relative inline-block">
                 {typedText}
-                <span className="absolute right-[-4px] top-0 h-full w-[2px] bg-primary animate-pulse" />
+                <span className="absolute right-[-4px] top-0 h-full w-[2px] bg-accent animate-pulse shadow-[0_0_10px_#00f2ff]" />
               </span>
             </h2>
-          </div>
+          </motion.div>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10">
-            Welcome to my portfolio! I specialize in creating beautiful, functional websites
-            and applications with modern technologies. Let's build something amazing together.
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed"
+          >
+            Welcome to my digital universe. I craft immersive web experiences and intelligent systems using cutting-edge technologies.
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-6"
+          >
             <a
               href="#projects"
-              className="px-6 py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+              className="group relative px-8 py-4 bg-primary/20 text-primary-foreground rounded-full overflow-hidden transition-all hover:scale-105 border border-primary/50 hover:border-primary hover:shadow-[0_0_20px_rgba(124,58,237,0.5)]"
             >
-              View My Work
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-purple-600 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+              <span className="relative font-medium">View My Work</span>
             </a>
             <a
               href="#contact"
-              className="px-6 py-3 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition-colors"
+              className="group px-8 py-4 bg-transparent text-foreground rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 hover:border-white/30 backdrop-blur-sm"
             >
-              Contact Me
+              <span className="font-medium">Contact Me</span>
             </a>
-          </div>
-
-          <div className="mt-16 animate-bounce">
-            <a href="#about" aria-label="Scroll down" className="inline-block">
-              <svg
-                className="w-10 h-10"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </a>
-          </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.5 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
+      >
+        <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center p-1">
+          <div className="w-1 h-2 bg-accent rounded-full animate-scroll"></div>
+        </div>
+      </motion.div>
     </section>
   );
 };

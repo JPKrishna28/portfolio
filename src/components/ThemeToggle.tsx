@@ -5,8 +5,11 @@ const ThemeToggle = () => {
 
   // Initialize theme based on user preference
   useEffect(() => {
-    const isDarkMode = localStorage.getItem('theme') === 'dark' ||
-      (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Default to light mode unless explicitly set to dark or system prefers dark
+    const isDarkMode = savedTheme === 'dark' || (!savedTheme && prefersDark);
 
     setIsDark(isDarkMode);
 
