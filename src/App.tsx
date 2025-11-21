@@ -15,9 +15,10 @@ function App() {
       <HeroSection />
       <AboutSection />
       <SkillsSection />
-      <TechSphere />
+      
       <ProjectsSection />
       <GithubStats />
+      <TechSphere />
       <AchievementSection />
       <ContactSection />
     </Layout>
