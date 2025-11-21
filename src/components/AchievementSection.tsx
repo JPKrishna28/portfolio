@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import VirtualGallery from './VirtualGallery';
+import { useDeviceDetection } from '../hooks/useDeviceDetection';
 
 interface Achievement {
   id: number;
@@ -13,6 +15,7 @@ interface Achievement {
 
 const AchievementSection: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const isMobile = useDeviceDetection(1024);
 
   const achievements: Achievement[] = [
     {
@@ -67,11 +70,11 @@ const AchievementSection: React.FC = () => {
 
   // Auto-slide functionality
   useEffect(() => {
-    if (achievements.length > 1) {
+    if (achievements.length > 1 && isMobile) {
       const timer = setInterval(nextSlide, 5000);
       return () => clearInterval(timer);
     }
-  }, [achievements.length, nextSlide]);
+  }, [achievements.length, nextSlide, isMobile]);
 
   return (
     <section id="achievements" className="py-20 relative">
@@ -92,101 +95,107 @@ const AchievementSection: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="relative max-w-5xl mx-auto">
-          {/* Main Achievement Display */}
-          <div className="glass rounded-2xl shadow-2xl overflow-hidden min-h-[500px] border border-white/5 relative">
-            {/* Background Glow */}
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-3xl -z-10"></div>
-            
-            <AnimatePresence mode='wait'>
-              <motion.div
-                key={currentSlide}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.4 }}
-                className="md:flex h-full"
-              >
-                {/* Image Section */}
-                <div className="md:w-1/2 relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                  <img
-                    src={achievements[currentSlide].image}
-                    alt={achievements[currentSlide].title}
-                    className="w-full h-64 md:h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
+        {/* Conditional rendering based on device */}
+        {isMobile ? (
+          // Mobile: Show slideshow
+          <div className="relative max-w-5xl mx-auto">
+            {/* Main Achievement Display */}
+            <div className="glass rounded-2xl shadow-2xl overflow-hidden min-h-[500px] border border-white/5 relative">
+              {/* Background Glow */}
+              <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-3xl -z-10"></div>
 
-                {/* Content Section */}
-                <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative">
-                  <div className="flex items-center mb-6">
-                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">
-                      {achievements[currentSlide].category}
-                    </span>
-                    <span className="ml-auto text-muted-foreground text-sm font-mono">
-                      {achievements[currentSlide].date}
-                    </span>
+              <AnimatePresence mode='wait'>
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="md:flex h-full"
+                >
+                  {/* Image Section */}
+                  <div className="md:w-1/2 relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                    <img
+                      src={achievements[currentSlide].image}
+                      alt={achievements[currentSlide].title}
+                      className="w-full h-64 md:h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
                   </div>
 
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6 text-white leading-tight">
-                    {achievements[currentSlide].title}
-                  </h3>
+                  {/* Content Section */}
+                  <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative">
+                    <div className="flex items-center mb-6">
+                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">
+                        {achievements[currentSlide].category}
+                      </span>
+                      <span className="ml-auto text-muted-foreground text-sm font-mono">
+                        {achievements[currentSlide].date}
+                      </span>
+                    </div>
 
-                  <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                    {achievements[currentSlide].description}
-                  </p>
-                  
-                  <div className="mt-auto flex gap-2">
-                    <div className="h-1 w-20 bg-gradient-to-r from-primary to-transparent rounded-full"></div>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-6 text-white leading-tight">
+                      {achievements[currentSlide].title}
+                    </h3>
+
+                    <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                      {achievements[currentSlide].description}
+                    </p>
+
+                    <div className="mt-auto flex gap-2">
+                      <div className="h-1 w-20 bg-gradient-to-r from-primary to-transparent rounded-full"></div>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Navigation Arrows */}
-          {achievements.length > 1 && (
-            <>
-              <button
-                onClick={prevSlide}
-                className="absolute -left-4 md:-left-12 top-1/2 transform -translate-y-1/2 p-3 rounded-full glass border border-white/10 hover:bg-white/10 hover:border-primary/50 transition-all group"
-                aria-label="Previous achievement"
-              >
-                <svg className="h-6 w-6 text-gray-400 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-
-              <button
-                onClick={nextSlide}
-                className="absolute -right-4 md:-right-12 top-1/2 transform -translate-y-1/2 p-3 rounded-full glass border border-white/10 hover:bg-white/10 hover:border-primary/50 transition-all group"
-                aria-label="Next achievement"
-              >
-                <svg className="h-6 w-6 text-gray-400 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </>
-          )}
-
-          {/* Slide Indicators */}
-          {achievements.length > 1 && (
-            <div className="flex justify-center mt-8 space-x-3">
-              {achievements.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`h - 1.5 rounded - full transition - all duration - 300 ${
-  index === currentSlide
-  ? 'w-8 bg-primary shadow-[0_0_10px_rgba(124,58,237,0.5)]'
-  : 'w-2 bg-white/20 hover:bg-white/40'
-} `}
-                  aria-label={`Go to slide ${ index + 1 } `}
-                />
-              ))}
+                </motion.div>
+              </AnimatePresence>
             </div>
-          )}
-        </div>
+
+            {/* Navigation Arrows */}
+            {achievements.length > 1 && (
+              <>
+                <button
+                  onClick={prevSlide}
+                  className="absolute -left-4 md:-left-12 top-1/2 transform -translate-y-1/2 p-3 rounded-full glass border border-white/10 hover:bg-white/10 hover:border-primary/50 transition-all group"
+                  aria-label="Previous achievement"
+                >
+                  <svg className="h-6 w-6 text-gray-400 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                <button
+                  onClick={nextSlide}
+                  className="absolute -right-4 md:-right-12 top-1/2 transform -translate-y-1/2 p-3 rounded-full glass border border-white/10 hover:bg-white/10 hover:border-primary/50 transition-all group"
+                  aria-label="Next achievement"
+                >
+                  <svg className="h-6 w-6 text-gray-400 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
+
+            {/* Slide Indicators */}
+            {achievements.length > 1 && (
+              <div className="flex justify-center mt-8 space-x-3">
+                {achievements.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${index === currentSlide
+                        ? 'w-8 bg-primary shadow-[0_0_10px_rgba(124,58,237,0.5)]'
+                        : 'w-2 bg-white/20 hover:bg-white/40'
+                      }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        ) : (
+          // Desktop: Show virtual gallery
+          <VirtualGallery achievements={achievements} />
+        )}
       </div>
     </section>
   );
