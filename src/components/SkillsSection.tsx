@@ -19,6 +19,15 @@ const SkillsSection = () => {
     { name: 'REST API', percentage: 88 },
   ];
 
+  const aiMlSkills = [
+    { name: 'Python', percentage: 90 },
+    { name: 'TensorFlow', percentage: 85 },
+    { name: 'PyTorch', percentage: 80 },
+    { name: 'Scikit-learn', percentage: 88 },
+    { name: 'Pandas', percentage: 92 },
+    { name: 'OpenCV', percentage: 75 },
+  ];
+
   const otherSkills = [
     'Git & GitHub',
     'Responsive Design',
@@ -64,7 +73,7 @@ const SkillsSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           <SkillCard
             title="Frontend"
             skills={frontendSkills}
@@ -76,6 +85,12 @@ const SkillsSection = () => {
             skills={backendSkills}
             icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />}
             delay={0.2}
+          />
+          <SkillCard
+            title="AI & ML"
+            skills={aiMlSkills}
+            icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3M3.337 19.175l-.707-.707M18.364 19.175l-.707.707M12 21v-1M8 12a4 4 0 118 0 4 4 0 01-8 0z" />}
+            delay={0.4}
           />
         </div>
 
