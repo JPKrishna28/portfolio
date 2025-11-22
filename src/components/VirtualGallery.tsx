@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { PointerLockControls, Image, Text, Box } from '@react-three/drei';
+import { Image, Text, Box } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import * as THREE from 'three';
@@ -17,15 +17,16 @@ interface VirtualGalleryProps {
     achievements: Achievement[];
 }
 
-// First-person character controller
+// First-person character controller with mouse look
 const PlayerController = () => {
-    const { camera } = useThree();
+    const { camera, gl } = useThree();
     const velocity = useRef(new THREE.Vector3());
     const direction = useRef(new THREE.Vector3());
     const moveForward = useRef(false);
     const moveBackward = useRef(false);
     const moveLeft = useRef(false);
     const moveRight = useRef(false);
+    const euler = useRef(new THREE.Euler(0, 0, 0, 'YXZ'));
 
     useEffect(() => {
         const onKeyDown = (event: KeyboardEvent) => {
@@ -70,14 +71,30 @@ const PlayerController = () => {
             }
         };
 
+        const onMouseMove = (event: MouseEvent) => {
+            // Only handle mouse movement if pointer is locked on our canvas
+            if (document.pointerLockElement !== gl.domElement) return;
+
+            const movementX = event.movementX || 0;
+            const movementY = event.movementY || 0;
+
+            euler.current.setFromQuaternion(camera.quaternion);
+            euler.current.y -= movementX * 0.002;
+            euler.current.x -= movementY * 0.002;
+            euler.current.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, euler.current.x));
+            camera.quaternion.setFromEuler(euler.current);
+        };
+
         document.addEventListener('keydown', onKeyDown);
         document.addEventListener('keyup', onKeyUp);
+        document.addEventListener('mousemove', onMouseMove);
 
         return () => {
             document.removeEventListener('keydown', onKeyDown);
             document.removeEventListener('keyup', onKeyUp);
+            document.removeEventListener('mousemove', onMouseMove);
         };
-    }, []);
+    }, [camera, gl]);
 
     useFrame((state, delta) => {
         // Movement speed
@@ -287,9 +304,6 @@ const GalleryScene = ({ achievements }: { achievements: Achievement[] }) => {
 
             {/* Player controller */}
             <PlayerController />
-
-            {/* Pointer lock controls for mouse look */}
-            <PointerLockControls />
         </>
     );
 };
@@ -336,12 +350,21 @@ const VirtualGallery: React.FC<VirtualGalleryProps> = ({ achievements }) => {
         return () => document.removeEventListener('pointerlockchange', handlePointerLockChange);
     }, []);
 
+    const handleCanvasClick = () => {
+        const canvas = document.querySelector('#gallery-canvas canvas') as HTMLCanvasElement;
+        if (canvas && !isLocked) {
+            canvas.requestPointerLock();
+        }
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             className="relative w-full h-[600px] glass rounded-2xl border border-white/5 overflow-hidden"
+            id="gallery-canvas"
+            onClick={handleCanvasClick}
         >
             <Canvas
                 camera={{ position: [0, 1.7, 3], fov: 75 }}
