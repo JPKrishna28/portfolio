@@ -1,8 +1,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import VirtualGallery from './VirtualGallery';
-import { useDeviceDetection } from '../hooks/useDeviceDetection';
 
 interface Achievement {
   id: number;
@@ -15,7 +13,6 @@ interface Achievement {
 
 const AchievementSection: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const isMobile = useDeviceDetection(1024);
 
   const achievements: Achievement[] = [
     {
@@ -70,11 +67,11 @@ const AchievementSection: React.FC = () => {
 
   // Auto-slide functionality
   useEffect(() => {
-    if (achievements.length > 1 && isMobile) {
+    if (achievements.length > 1) {
       const timer = setInterval(nextSlide, 5000);
       return () => clearInterval(timer);
     }
-  }, [achievements.length, nextSlide, isMobile]);
+  }, [achievements.length, nextSlide]);
 
   return (
     <section id="achievements" className="py-20 relative">
@@ -95,10 +92,7 @@ const AchievementSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Conditional rendering based on device */}
-        {isMobile ? (
-          // Mobile: Show slideshow
-          <div className="relative max-w-5xl mx-auto">
+        <div className="relative max-w-5xl mx-auto">
             {/* Main Achievement Display */}
             <div className="glass rounded-2xl shadow-2xl overflow-hidden min-h-[500px] border border-white/5 relative">
               {/* Background Glow */}
@@ -192,10 +186,6 @@ const AchievementSection: React.FC = () => {
               </div>
             )}
           </div>
-        ) : (
-          // Desktop: Show virtual gallery
-          <VirtualGallery achievements={achievements} />
-        )}
       </div>
     </section>
   );
