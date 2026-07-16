@@ -52,96 +52,74 @@ const HeroSection = () => {
   }, [typedText, isDeleting, textIndex, typingSpeed]);
 
   return (
-    <section id="home" className="pt-32 pb-20 min-h-screen flex flex-col justify-center relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] -z-10"></div>
-
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+    <section id="home" className="pt-32 pb-20 min-h-screen flex flex-col justify-center relative">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="mb-6 relative"
+            className="mb-8"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent blur-xl opacity-50 rounded-full"></div>
             <img
               src="/myphoto.png"
               alt="Profile"
-              className="w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-white/10 relative z-10 object-cover"
+              className="w-28 h-28 md:w-32 md:h-32 rounded-full border border-border object-cover"
             />
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 tracking-tight"
           >
-            Hello, I'm <br className="md:hidden" />
-            <span className="text-primary">
-              Perla Jaswanth Krishna
-            </span>
+            Perla Jaswanth Krishna
           </motion.h1>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="h-12 mb-8 flex items-center justify-center"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="h-10 mb-6 flex items-center justify-center"
           >
-            <h2 className="text-2xl md:text-3xl font-light text-muted-foreground">
-              I'm a{' '}
-              <span className="text-foreground font-medium ml-2 relative inline-block">
-                {typedText}
-                <span className="absolute right-[-4px] top-0 h-full w-[2px] bg-accent animate-pulse shadow-[0_0_10px_#00f2ff]" />
-              </span>
+            <h2 className="text-xl md:text-2xl text-muted-foreground font-light">
+              {typedText}
+              <span className="inline-block w-[2px] h-[1.2em] bg-muted-foreground ml-1 align-middle animate-pulse" />
             </h2>
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-base md:text-lg text-muted-foreground max-w-xl mb-10 leading-relaxed"
           >
-            Welcome to my digital universe. I craft immersive web experiences and intelligent systems using cutting-edge technologies.
+            I build web applications and machine learning systems, with a focus on
+            practical, well-crafted software.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-6"
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4"
           >
             <a
               href="#projects"
-              className="group relative px-8 py-4 bg-primary/20 text-primary-foreground rounded-full overflow-hidden transition-all hover:scale-105 border border-primary/50 hover:border-primary hover:shadow-[0_0_20px_rgba(124,58,237,0.5)]"
+              className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium text-sm hover:opacity-90 transition-opacity"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-purple-600 opacity-0 group-hover:opacity-20 transition-opacity"></div>
-              <span className="relative font-medium">View My Work</span>
+              View My Work
             </a>
             <a
               href="#contact"
-              className="group px-8 py-4 bg-transparent text-foreground rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 hover:border-white/30 backdrop-blur-sm"
+              className="px-6 py-3 border border-border text-foreground rounded-md font-medium text-sm hover:bg-secondary transition-colors"
             >
-              <span className="font-medium">Contact Me</span>
+              Contact Me
             </a>
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center p-1">
-          <div className="w-1 h-2 bg-accent rounded-full animate-scroll"></div>
-        </div>
-      </motion.div>
     </section>
   );
 };

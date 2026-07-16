@@ -2,36 +2,36 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-secondary/30 py-8">
+    <footer className="border-t border-border py-10 relative z-10">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-semibold mb-4">Portfolio</h3>
+            <h3 className="text-sm font-semibold mb-4 uppercase tracking-wide">Portfolio</h3>
             <p className="text-muted-foreground">
               A showcase of my skills, projects, and professional journey.
             </p>
           </div>
 
           <div>
-            <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-sm font-semibold mb-4 uppercase tracking-wide">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="#home" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="#about" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                   About
                 </a>
               </li>
               <li>
-                <a href="#projects" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="#projects" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                   Projects
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="#contact" className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                   Contact
                 </a>
               </li>
@@ -39,13 +39,13 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-xl font-semibold mb-4">Connect</h3>
+            <h3 className="text-sm font-semibold mb-4 uppercase tracking-wide">Connect</h3>
             <div className="flex space-x-4">
               <a
                 href="https://github.com/JPKrishna28"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground text-sm hover:text-foreground transition-colors"
                 aria-label="GitHub"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -56,7 +56,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/jaswanthperla"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground text-sm hover:text-foreground transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

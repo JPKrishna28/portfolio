@@ -198,109 +198,86 @@ const ProjectsSection = () => {
   }, [selectedCategory]);
 
   return (
-    <section id="projects" className="py-20 relative">
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col items-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl md:text-4xl font-bold mb-4 text-center"
-          >
-            My <span className="text-primary">Projects</span>
-          </motion.h2>
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-24 h-1 bg-gradient-to-r from-primary to-accent rounded-full"
-          ></motion.div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-6 text-center max-w-2xl text-muted-foreground"
-          >
-            Here are some of my recent projects. Each project is a unique piece of development,
-            from planning and design all the way to solving real-life problems with code.
-          </motion.p>
-        </div>
+    <section id="projects" className="py-24">
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.4 }}
+          className="mb-14"
+        >
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-2">Projects</h2>
+          <p className="text-muted-foreground max-w-2xl">
+            A selection of my recent work, from web applications to machine learning systems.
+          </p>
+        </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+        <div className="flex flex-wrap gap-2 mb-12">
+          <button
             onClick={() => setSelectedCategory('all')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all border ${selectedCategory === 'all'
-              ? 'bg-primary/20 border-primary text-primary shadow-[0_0_15px_rgba(124,58,237,0.3)]'
-              : 'bg-white/5 border-white/10 text-muted-foreground hover:bg-white/10 hover:border-white/20'
+            className={`px-4 py-1.5 rounded-md text-sm transition-colors border ${selectedCategory === 'all'
+              ? 'bg-primary text-primary-foreground border-primary'
+              : 'border-border text-muted-foreground hover:text-foreground hover:border-foreground/30'
               }`}
           >
             All
-          </motion.button>
+          </button>
           {allTags.map((tag) => (
-            <motion.button
+            <button
               key={tag}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedCategory(tag)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all border ${selectedCategory === tag
-                ? 'bg-primary/20 border-primary text-primary shadow-[0_0_15px_rgba(124,58,237,0.3)]'
-                : 'bg-white/5 border-white/10 text-muted-foreground hover:bg-white/10 hover:border-white/20'
+              className={`px-4 py-1.5 rounded-md text-sm transition-colors border ${selectedCategory === tag
+                ? 'bg-primary text-primary-foreground border-primary'
+                : 'border-border text-muted-foreground hover:text-foreground hover:border-foreground/30'
                 }`}
             >
               {tag}
-            </motion.button>
+            </button>
           ))}
         </div>
 
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence>
             {(showAll ? filteredProjects : filteredProjects.slice(0, INITIAL_DISPLAY_COUNT)).map((project) => (
               <motion.div
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
                 key={project.id}
-                className="glass rounded-2xl overflow-hidden border border-white/5 hover:border-primary/50 transition-colors group"
+                className="bg-card border border-border rounded-lg overflow-hidden flex flex-col"
               >
-                <div className="aspect-video bg-black/50 relative overflow-hidden">
-                  <motion.img
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
+                <div className="aspect-video bg-muted overflow-hidden border-b border-border">
+                  <img
                     src={project.image}
                     alt={`${project.title} screenshot`}
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-primary transition-colors">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4 text-sm line-clamp-2">{project.description}</p>
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-lg font-medium mb-2">{project.title}</h3>
+                  <p className="text-muted-foreground mb-4 text-sm line-clamp-2 leading-relaxed">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300"
+                        className="px-2.5 py-1 bg-secondary rounded text-xs text-secondary-foreground"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-4">
+                  <div className="flex gap-3 mt-auto">
                     <a
                       href={project.demoLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 px-4 py-2 bg-primary/20 text-primary border border-primary/50 rounded-lg text-center text-sm hover:bg-primary hover:text-white transition-all hover:shadow-[0_0_15px_rgba(124,58,237,0.4)]"
+                      className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-md text-center text-sm font-medium hover:opacity-90 transition-opacity"
                     >
                       Live Demo
                     </a>
@@ -308,7 +285,7 @@ const ProjectsSection = () => {
                       href={project.codeLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 px-4 py-2 bg-white/5 text-white border border-white/10 rounded-lg text-center text-sm hover:bg-white/10 transition-colors"
+                      className="flex-1 px-4 py-2 border border-border text-foreground rounded-md text-center text-sm font-medium hover:bg-secondary transition-colors"
                     >
                       View Code
                     </a>
@@ -321,32 +298,22 @@ const ProjectsSection = () => {
 
         {/* View More Button */}
         {filteredProjects.length > INITIAL_DISPLAY_COUNT && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex justify-center mt-12"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(124, 58, 237, 0.5)" }}
-              whileTap={{ scale: 0.95 }}
+          <div className="flex justify-center mt-12">
+            <button
               onClick={() => setShowAll(!showAll)}
-              className="px-8 py-3 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-lg transition-all shadow-lg"
+              className="px-6 py-2.5 border border-border text-foreground rounded-md text-sm font-medium hover:bg-secondary transition-colors"
             >
               {showAll ? 'Show Less' : `View More (${filteredProjects.length - INITIAL_DISPLAY_COUNT} more)`}
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
         )}
 
         {filteredProjects.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center mt-10 p-8 glass rounded-2xl border border-white/5"
-          >
-            <p className="text-lg text-muted-foreground">
+          <div className="text-center mt-10 p-8 bg-card border border-border rounded-lg">
+            <p className="text-muted-foreground">
               No projects found in this category. Please select another category.
             </p>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>

@@ -8,6 +8,9 @@ const EMAILJS_PLACEHOLDER = {
   PUBLIC_KEY: 'LOmSpwsuNn8J6oLTc',
 };
 
+const inputClasses =
+  'w-full p-3 bg-background border border-input rounded-md text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/30 focus:border-ring transition-colors outline-none';
+
 const ContactSection = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
   const [formData, setFormData] = useState({
@@ -67,39 +70,29 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+    <section id="contact" className="py-24">
+      <div className="container mx-auto px-4 md:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col items-center mb-16"
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.4 }}
+          className="mb-14"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-            Contact <span className="text-accent">Me</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-accent to-primary rounded-full" />
-          <p className="mt-6 text-center max-w-2xl text-muted-foreground">
-            Have a question or want to work together? Feel free to reach out to me using the form below or through my contact information.
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-2">Contact</h2>
+          <p className="text-muted-foreground max-w-2xl">
+            Have a question or want to work together? Reach out using the form below or
+            through my contact information.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="glass p-8 rounded-2xl border border-white/5"
-          >
-            <h3 className="text-2xl font-semibold mb-8 text-white flex items-center">
-              <span className="mr-3 text-accent">✉️</span> Get In Touch
-            </h3>
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-              <div className="group">
-                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-300 group-focus-within:text-primary transition-colors">
+          <div className="bg-card border border-border rounded-lg p-8">
+            <h3 className="text-lg font-medium mb-6">Get In Touch</h3>
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label htmlFor="name" className="block mb-2 text-sm font-medium text-foreground">
                   Name
                 </label>
                 <input
@@ -108,14 +101,14 @@ const ContactSection = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full p-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 focus:bg-white/10 transition-all outline-none"
+                  className={inputClasses}
                   placeholder="Your name"
                   required
                 />
               </div>
 
-              <div className="group">
-                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-300 group-focus-within:text-primary transition-colors">
+              <div>
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-foreground">
                   Email
                 </label>
                 <input
@@ -124,14 +117,14 @@ const ContactSection = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full p-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 focus:bg-white/10 transition-all outline-none"
+                  className={inputClasses}
                   placeholder="Your email"
                   required
                 />
               </div>
 
-              <div className="group">
-                <label htmlFor="subject" className="block mb-2 text-sm font-medium text-gray-300 group-focus-within:text-primary transition-colors">
+              <div>
+                <label htmlFor="subject" className="block mb-2 text-sm font-medium text-foreground">
                   Subject
                 </label>
                 <input
@@ -140,14 +133,14 @@ const ContactSection = () => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full p-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 focus:bg-white/10 transition-all outline-none"
+                  className={inputClasses}
                   placeholder="Subject"
                   required
                 />
               </div>
 
-              <div className="group">
-                <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-300 group-focus-within:text-primary transition-colors">
+              <div>
+                <label htmlFor="message" className="block mb-2 text-sm font-medium text-foreground">
                   Message
                 </label>
                 <textarea
@@ -156,76 +149,57 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className="w-full p-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 focus:bg-white/10 transition-all outline-none resize-none"
+                  className={`${inputClasses} resize-none`}
                   placeholder="Your message"
                   required
                 />
               </div>
 
-              <motion.button
-                whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(124, 58, 237, 0.5)" }}
-                whileTap={{ scale: 0.98 }}
+              <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 bg-gradient-to-r from-primary to-accent text-white font-bold rounded-lg hover:opacity-90 transition-all disabled:opacity-70 disabled:cursor-not-allowed shadow-lg"
+                className="w-full py-3 bg-primary text-primary-foreground font-medium rounded-md hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
-              </motion.button>
+              </button>
 
               {submitSuccess && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  className="p-3 bg-green-500/20 border border-green-500/50 text-green-200 rounded-lg text-center"
-                >
+                <div className="p-3 border border-green-600/40 bg-green-600/10 text-green-700 dark:text-green-400 rounded-md text-center text-sm">
                   Your message has been sent successfully! I'll get back to you soon.
-                </motion.div>
+                </div>
               )}
               {submitError && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  className="p-3 bg-red-500/20 border border-red-500/50 text-red-200 rounded-lg text-center"
-                >
+                <div className="p-3 border border-red-600/40 bg-red-600/10 text-red-700 dark:text-red-400 rounded-md text-center text-sm">
                   {submitError}
-                </motion.div>
+                </div>
               )}
             </form>
-          </motion.div>
+          </div>
 
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="space-y-8"
-          >
-            <div className="glass p-8 rounded-2xl border border-white/5 h-full flex flex-col justify-center">
-              <h3 className="text-2xl font-semibold mb-8 text-white">Contact Information</h3>
-              <div className="space-y-8">
-                <ContactInfo
-                  label="Email"
-                  value="perlajaswanthkrishna@gmail.com"
-                  href="mailto:perlajaswanthkrishna@gmail.com"
-                  icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />}
-                />
-                <ContactInfo
-                  label="Phone"
-                  value="+91 80961 91416"
-                  href="tel:+91 8096191416"
-                  icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />}
-                />
-                <ContactInfo
-                  label="Location"
-                  value="Nuzvid, Andhra Pradesh, India"
-                  href="#"
-                  icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />}
-                />
-              </div>
-
+          <div className="bg-card border border-border rounded-lg p-8 h-full flex flex-col justify-center">
+            <h3 className="text-lg font-medium mb-6">Contact Information</h3>
+            <div className="space-y-4">
+              <ContactInfo
+                label="Email"
+                value="perlajaswanthkrishna@gmail.com"
+                href="mailto:perlajaswanthkrishna@gmail.com"
+                icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />}
+              />
+              <ContactInfo
+                label="Phone"
+                value="+91 80961 91416"
+                href="tel:+91 8096191416"
+                icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />}
+              />
+              <ContactInfo
+                label="Location"
+                value="Nuzvid, Andhra Pradesh, India"
+                href="#"
+                icon={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />}
+              />
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -243,23 +217,22 @@ const ContactInfo = ({
   href: string;
   icon: React.ReactNode;
 }) => (
-  <motion.a
+  <a
     href={href}
-    whileHover={{ x: 10, backgroundColor: "rgba(255, 255, 255, 0.05)" }}
-    className="flex items-center p-4 rounded-xl transition-colors group"
+    className="flex items-center p-3 rounded-md hover:bg-secondary transition-colors group"
   >
-    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors shadow-[0_0_15px_rgba(124,58,237,0.3)]">
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div className="w-10 h-10 rounded-md bg-secondary flex items-center justify-center text-foreground shrink-0">
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         {icon}
       </svg>
     </div>
-    <div className="ml-6">
-      <h4 className="text-sm font-medium text-muted-foreground mb-1">{label}</h4>
-      <span className="text-lg text-white font-medium group-hover:text-accent transition-colors">
+    <div className="ml-4 min-w-0">
+      <h4 className="text-xs font-medium text-muted-foreground mb-0.5">{label}</h4>
+      <span className="text-sm text-foreground font-medium break-all">
         {value}
       </span>
     </div>
-  </motion.a>
+  </a>
 );
 
 export default ContactSection;
